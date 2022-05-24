@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/ptit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/avatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/student"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#FFFFFF"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="150dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvName"
+        android:text="abc"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/avatar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/maSV"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="100dp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="Ma SV:"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/maSV"
+        app:layout_constraintLeft_toRightOf="@id/maSV"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="B18DCCN666"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/tvMaSV"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mail"
+        app:layout_constraintTop_toBottomOf="@id/maSV"
+        app:layout_constraintLeft_toLeftOf="@id/maSV"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="Mail:"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/mail"
+        app:layout_constraintLeft_toLeftOf="@id/tvMaSV"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="abcd"
+        android:id="@+id/tvMail"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/phone"
+        app:layout_constraintTop_toBottomOf="@id/mail"
+        app:layout_constraintLeft_toLeftOf="@id/maSV"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="Phone:"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/phone"
+        app:layout_constraintLeft_toLeftOf="@id/tvMaSV"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="0987"
+        android:id="@+id/tvPhone"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">btl</string>
+    <string-array name="role">
+        <item>Teacher</item>
+        <item>Student</item>
+    </string-array>
+</resources>

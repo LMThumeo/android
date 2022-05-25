@@ -45,15 +45,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (teacher == null ) {
                         Toast.makeText(this, "login failed", Toast.LENGTH_LONG).show();
                     }
+                    else {
+                        Intent intent = new Intent(this, TeacherMainActivity.class);
+                        intent.putExtra("teacher", teacher);
+                        startActivity(intent);
+                    }
                 }
                 else {
                     Student student = db.loginStudent(user, pass);
                     if (student == null ) {
                         Toast.makeText(this, "login failed", Toast.LENGTH_LONG).show();
                     }
-                    Intent intent = new Intent(this, MainActivity.class);
-                    intent.putExtra("student", student);
-                    startActivity(intent);
+                    else {
+                        Intent intent = new Intent(this, MainActivity.class);
+                        intent.putExtra("student", student);
+                        startActivity(intent);
+                    }
+
                 }
         }
     }

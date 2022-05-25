@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".TeacherMainActivity">
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
+        android:id="@+id/viewPager2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/navigation" />
-
+        android:layout_above="@+id/navigation2" />
+    
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navigation"
+        android:id="@+id/navigation2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:itemIconTint="@color/navigation_color"
         app:itemTextColor="@color/navigation_color"
-        app:menu="@menu/navigation" />
-    
+        app:menu="@menu/navigation"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,5 +31,7 @@
         android:layout_marginRight="20dp"
         android:backgroundTint="@color/blue"
         android:src="@drawable/ic_baseline_exit_to_app_24"/>
+
+
 
 </RelativeLayout>

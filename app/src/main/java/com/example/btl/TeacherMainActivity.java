@@ -9,12 +9,14 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.btl.adapter.TeacherViewPagerAdapter;
 import com.example.btl.adapter.ViewPagerAdapter;
 import com.example.btl.model.Student;
+import com.example.btl.model.Teacher;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class MainActivity extends AppCompatActivity {
+public class TeacherMainActivity extends AppCompatActivity {
 
     private BottomNavigationView navigationView;
     private ViewPager viewPager;
@@ -23,16 +25,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Intent intent = getIntent();
-        Student student = (Student) intent.getSerializableExtra("student");
+        setContentView(R.layout.activity_teacher_main);
 
-        navigationView = findViewById(R.id.navigation);
-        viewPager = findViewById(R.id.viewPager);
+        Intent intent = getIntent();
+        Teacher teacher = (Teacher) intent.getSerializableExtra("teacher");
+
+        navigationView = findViewById(R.id.navigation2);
+        viewPager = findViewById(R.id.viewPager2);
         fab = findViewById(R.id.fab);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.setStudent(student);
+        TeacherViewPagerAdapter adapter = new TeacherViewPagerAdapter(getSupportFragmentManager());
+        adapter.setTeacher(teacher);
         viewPager.setAdapter(adapter);
+
+        System.out.println("main");
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

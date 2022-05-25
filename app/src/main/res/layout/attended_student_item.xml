@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:strokeColor="@color/blue"
+    app:strokeWidth="1dp">
+
+    <FrameLayout
+        android:background="@drawable/triangle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvName"
+                android:layout_gravity="center"
+                android:text="Nguyen Anh"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvCode"
+                android:text="B18DCCN666"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvTime"
+            android:text="07:08:51"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"            />
+
+
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

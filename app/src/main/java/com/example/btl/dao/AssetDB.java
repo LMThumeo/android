@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.btl.model.AttendedStudent;
 import com.example.btl.model.Student;
 import com.example.btl.model.StudentClass;
 import com.example.btl.model.StudyClass;
@@ -61,6 +62,7 @@ public class AssetDB extends SQLiteAssetHelper {
             System.out.println(user);
             return new Teacher(id, user, pass, name, mail, seniority, department);
         }
+        System.out.println("teacher null");
         return null;
     }
 
@@ -166,4 +168,93 @@ public class AssetDB extends SQLiteAssetHelper {
         return sqLiteDatabase.insert("attendance", null, values);
     }
 
+    public List<StudyClass> getClassByTeacher(int teacherId) {
+        List<StudyClass> list = new ArrayList<>();
+        SQLiteDatabase sql = getReadableDatabase();
+
+        String whereClause = "teacher_id = ?";
+        String[] whereArgs = {Integer.toString(teacherId)};
+        Cursor r = sql.query("studyclass", null, whereClause, whereArgs, null, null, null);
+        while (r != null && r.moveToNext()) {
+            int id = r.getInt(0);
+            String subject = r.getString(1);
+            String group = Integer.toString(r.getInt(2));
+            String timeStart = r.getString(3);
+            String timeEnd = r.getString(4);
+            String day = r.getString(5);
+//            int teacherId = r.getInt(6);
+            String room = r.getString(7);
+            list.add(new StudyClass(id, teacherId, subject, group, room, day, timeStart, timeEnd));
+            System.out.println("id: "+id+" day: " + day);
+        }
+        return list;
+    }
+
+    public List<StudyClass> getClassByTeacherAndDay(int teacherId, String day) {
+        List<StudyClass> classes = getClassByTeacher(teacherId);
+        List<StudyClass> todayClasses = new ArrayList<>();
+        for (StudyClass st : classes) {
+            System.out.println(st.getSubject()+" "+st.getDay());
+            if (st.getDay().equalsIgnoreCase(day)) {
+                todayClasses.add(st);
+            }
+        }
+        return todayClasses;
+    }
+
+    public List<StudyClass> getTodayClassByTeacher(int teacherId) {
+        String day = LocalDate.now().getDayOfWeek().toString();
+        return getClassByTeacherAndDay(teacherId, day);
+    }
+
+    public List<StudentClass> getStudentClassByClass(int classId){
+        SQLiteDatabase sql = getReadableDatabase();
+        List<StudentClass> studentClasses = new ArrayList<>();
+        String whereClause = "class_id = ?";
+        String[] whereArgs = {Integer.toString(classId)};
+        Cursor r = sql.query("studentclass", null, whereClause, whereArgs, null, null, null);
+        while (r != null && r.moveToNext()) {
+            int id = r.getInt(0);
+            int studentId = r.getInt(1);
+            studentClasses.add(new StudentClass(id, studentId, classId));
+            System.out.println("studentclass: "+id);
+        }
+        return studentClasses;
+    }
+
+    public Student getStudentById(int studentId) {
+        SQLiteDatabase sql = getReadableDatabase();
+        String whereClause = "id = ?";
+        String[] whereArgs = {Integer.toString(studentId)};
+        Cursor r = sql.query("student", null, whereClause, whereArgs, null, null, null);
+        while (r != null && r.moveToNext()) {
+            int id = r.getInt(0);
+            String username = r.getString(1);
+            String password = r.getString(2);
+            String name = r.getString(3);
+            String phone = r.getString(4);
+            String mail = r.getString(5);
+            return new Student(id, username, password, name, phone, mail);
+        }
+        return  null;
+    }
+
+
+    public List<AttendedStudent> getAttendedStudent(int classId, String date) {
+        List<StudentClass> studentClasses = getStudentClassByClass(classId);
+        List<AttendedStudent> attendedStudents = new ArrayList<>();
+        SQLiteDatabase sql = getReadableDatabase();
+
+        for(StudentClass st: studentClasses) {
+            String whereClause = "student_class_id = ? and date = ?";
+            String[] whereArgs = {Integer.toString(st.getId()), date};
+            Cursor r = sql.query("attendance", null, whereClause, whereArgs, null, null, null);
+            while (r != null && r.moveToNext()) {
+                String time = r.getString(3);
+                Student student = getStudentById(st.getStudentId());
+                attendedStudents.add(new AttendedStudent(student, date, time));
+            }
+        }
+        return attendedStudents;
+    }
 }
